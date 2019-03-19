@@ -5,7 +5,7 @@ trying out storybook.
 ## Steps to start:
 * create angular app with cli
 * then run storybook cli inside angular app directory
-* test story
+* launch storybook
 
 ```
 ng new myApp
