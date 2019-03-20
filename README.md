@@ -11,6 +11,6 @@ trying out storybook.
 ng new myApp
 cd myApp
 npx @storybook/cli
-npm start storybook
+npm run storybook
 ```
 
