@@ -41,10 +41,7 @@ jobs:
           at: ~/repo
       - run:
           name: Install and configure dependencies
-          command: |
-            npm install -g --silent gh-pages@2.0.1
-            git config user.email "random@email.net"
-            git config user.name "ci-build"
+          command: npm install -g --silent gh-pages@2.0.1
       - add_ssh_keys:
           fingerprints:
             - "47:ea:88:91:2e:76:b5:8e:26:06:76:3d:d6:f7:9f:f7"
