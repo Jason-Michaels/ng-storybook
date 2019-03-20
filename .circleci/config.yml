@@ -13,7 +13,7 @@ jobs:
       #    name: Test project
       #    command: npm test
 
-  docs-build:
+  docs-build-deploy:
     docker:
       - image: circleci/node:10
     working_directory: ~/repo
@@ -25,41 +25,23 @@ jobs:
       - run:
           name: Build project
           command: npm run build-storybook
-      - persist_to_workspace:
-          root: ~/repo
-          paths: storybook-static
-
-  docs-deploy:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Where are we exactly?
-          command: ls -lrt -d -1 $PWD/{*,.*}
-      - run:
-          name: Setup npm inital
-          command: npm init -y
-      - run:
-          name: Install and configure dependencies
-          command: npm install -g gh-pages@2.0.1
       - add_ssh_keys:
           fingerprints:
             - "47:ea:88:91:2e:76:b5:8e:26:06:76:3d:d6:f7:9f:f7"
       - run:
-          name: Deploy files to gh-pages branch
-          command: gh-pages --message "ci Updates" --dist ~repo/storybook-static
+          name: Just random git stuff
+          command: |
+            git config user.email "ci-build@randomemail.co.za"
+            git config user.name "ci-build"
+      - run:
+          name: deploy project
+          command: npm run gh-pages --message "ci deployment" --dist storybook-static
 
 workflows:
   version: 2
   build:
     jobs:
-      - docs-build
-      - docs-deploy:
-          requires:
-            - docs-build
+      - docs-build-deploy
 
 #for when it's ready
 # workflows:
