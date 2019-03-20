@@ -34,8 +34,8 @@ jobs:
             git config user.email "ci-build@randomemail.co.za"
             git config user.name "ci-build"
       - run:
-          name: deploy project
-          command: npm run gh-pages --message "ci deployment" --dist storybook-static
+          name: Deploy output files
+          command: node_modules/gh-pages/bin/gh-pages.js --message "ci deployment" --dist storybook-static
 
 workflows:
   version: 2
