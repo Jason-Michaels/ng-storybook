@@ -41,7 +41,7 @@ jobs:
           command: ls -lrt -d -1 $PWD/{*,.*}
       - run:
           name: Setup npm inital
-          command: npm init
+          command: npm init -y
       - run:
           name: Install and configure dependencies
           command: npm install -g gh-pages@2.0.1
