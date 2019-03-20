@@ -1,0 +1,76 @@
+version: 2
+
+jobs:
+  # test:
+  #   docker:
+  #     - image: circleci/node:10
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install project
+  #         command: npm install
+      #- run:
+      #    name: Test project
+      #    command: npm test
+
+  docs-build:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install project
+          command: npm install
+      - run:
+          name: Build project
+          command: npm run build-storybook
+      - run:
+          name: Checking directory paths
+          command: ls -lrt -d -1 $PWD/{*,.*}
+      #- persist_to_workspace:
+      #    root: ~/repo
+      #    paths: storybook-static
+
+  # docs-deploy:
+  #   docker:
+  #     - image: node:8.10.0
+  #   steps:
+  #     - checkout
+  #     - attach_workspace:
+  #         at: docs/_build
+  #     - run:
+  #         name: Disable jekyll builds
+  #         command: touch docs/_build/html/.nojekyll
+  #     - run:
+  #         name: Install and configure dependencies
+  #         command: |
+  #           npm install -g --silent gh-pages@2.0.1
+  #           git config user.email "ci-build@klukas.net"
+  #           git config user.name "ci-build"
+  #     - add_ssh_keys:
+  #         fingerprints:
+  #           - "59:ad:fd:64:71:eb:81:01:6a:d7:1a:c9:0c:19:39:af"
+  #     - run:
+  #         name: Deploy docs to gh-pages branch
+  #         command: gh-pages --dotfiles --message "[skip ci] Updates" --dist docs/_build/html
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - docs-build
+
+#for when it's ready
+# workflows:
+#   version: 2
+#   build:
+#     jobs:
+#       - docs-build
+#       - docs-deploy:
+#           requires:
+#             - test
+#             - docs-build
+#           filters:
+#             branches:
+# only: master
