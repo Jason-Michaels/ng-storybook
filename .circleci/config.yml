@@ -25,9 +25,6 @@ jobs:
       - run:
           name: Build project
           command: npm run build-storybook
-      - run:
-          name: Checking directory paths
-          command: ls -lrt -d -1 $PWD/{*,.*}
       - persist_to_workspace:
           root: ~/repo
           paths: storybook-static
@@ -39,6 +36,12 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/repo
+      - run:
+          name: Where are we exactly?
+          command: ls -lrt -d -1 $PWD/{*,.*}
+      - run:
+          name: Setup npm inital
+          command: npm init
       - run:
           name: Install and configure dependencies
           command: npm install -g gh-pages@2.0.1
