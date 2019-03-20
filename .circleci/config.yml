@@ -60,9 +60,6 @@ workflows:
       - docs-deploy:
           requires:
             - docs-build
-          filters:
-            branches:
-only: master
 
 #for when it's ready
 # workflows:
