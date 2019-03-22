@@ -1,8 +1,11 @@
-ng-storybook
+An Angular Storybook with auto deployment to Github Pages using CicleCI
 
-trying out storybook.
+[![CircleCI](https://circleci.com/gh/Jason-Michaels/ng-storybook.svg?style=svg)](https://circleci.com/gh/Jason-Michaels/ng-storybook)
 
-## Steps to start:
+View project page here - https://jason-michaels.github.io/ng-storybook/
+
+
+## Steps to start locally:
 * create angular app with cli
 * then run storybook cli inside angular app directory
 * launch storybook
