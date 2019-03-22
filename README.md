@@ -17,3 +17,5 @@ npx @storybook/cli
 npm run storybook
 ```
 
+All contributions are welcomed :)
+
